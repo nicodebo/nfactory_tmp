@@ -8,7 +8,7 @@ include 'include/header.php';
 ?>
 <?php foreach($movies as $key => $movies)?>
 <div class="card">
-    <img src="<?php echo $movie['id'].'jpg'?>">
+    <img src="<?php echo 'posters/'.$movie['id'].'jpg'?>">
 </div>
 
 <?php include 'include/footer.php';
