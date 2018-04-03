@@ -9,6 +9,13 @@
     <!-- <script src="main.js"></script> -->
 </head>
 <body>
-    
-</body>
-</html>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="inscription.php">Inscription</a></li>
+                <li><a href="connexion.php">Connexion</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="content">
