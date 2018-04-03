@@ -1,4 +1,5 @@
 <?php
+include 'include/identifier.php';
 include 'include/pdo.php';
 include 'include/model.php';
 
