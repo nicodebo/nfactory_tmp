@@ -1,10 +1,10 @@
 <?php
-include('include/identifier.php');
+
 $db_name='webolic_5nuns';
 
 try
 {
-    if($os == 'Windwos') {
+    if($os == 'Windows') {
 
         $pdo = new PDO('mysql:host=localhost;dbname=' . $db_name, "root", "", array(
             PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
