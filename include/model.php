@@ -6,7 +6,6 @@ function getRandomFilm($nbfilm)
 {
     global $pdo;
     $sql = "SELECT * FROM movies_full ORDER BY RAND() LIMIT $nbfilm";
-    echo $sql;
     $query = $pdo->prepare($sql);
     $query->execute();
     $films = $query->fetchAll();
