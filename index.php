@@ -6,9 +6,13 @@ include 'include/model.php';
 $movies  = getRandomFilm(10);
 include 'include/header.php';
 ?>
-<?php foreach($movies as $key => $movies)?>
-<div class="card">
-    <img src="<?php echo 'posters/'.$movie['id'].'jpg'?>">
+<div id="poster">
+    <?php foreach($movies as $movie){?>
+    <div class="card">
+        <img src="<?php echo 'posters/'.$movie['id'].'.jpg'?>" alt="<?php echo $movie['title'] ?>">
+    </div>
+    <?php } ?>
 </div>
+
 
 <?php include 'include/footer.php';
