@@ -24,13 +24,14 @@ function getUniqueValues($column, $reverse = true){
     return $tab;
 }
 
-// function getInterval($tab){
-//     // boucle de 10 en 10 fermeture tab_length
-//     for($i = 0; $i < count($tab); $i + 10){
-//         $output = array_slice($tab, $i, 10);
-//     }
-//     return $output;
-// }
+function getInterval($tab){
+    for($i = 0; $i < count($tab); $i+=10){
+        $output = array_slice($tab, $i, 10);
+        $str = min($output) . '-' . max($output);
+        $tab_interval[] = $str;
+    }
+    return $tab_interval;
+}
 
 function afficheChexbox($tab, $column){
     foreach($tab as $value){

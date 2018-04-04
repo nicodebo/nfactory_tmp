@@ -96,6 +96,7 @@ if(!$success){
             <?php
 
             $tab_years = getUniqueValues('year', false);
+            $tab_years = getInterval($tab_years);
             afficheChexbox($tab_years, 'year');
             ?>
         </fieldset>

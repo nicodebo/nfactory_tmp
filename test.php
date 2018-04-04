@@ -4,7 +4,7 @@ include 'include/pdo.php';
 include 'include/model.php';
 include 'include/function.php';
 
-
+$movies  = getRandomFilm(10);
 include 'include/header.php';
 ?>
 <style>
@@ -16,7 +16,7 @@ include 'include/header.php';
 <?php
 // $tab_genre = getTabColumnValues('genres');
 // debug($tab_genre);
-debug(getInterval(getUniqueValues('year', false)));
+// debug(getInterval(getUniqueValues('year', false)));
 
 ?>
 <h3 class="underline">Test searchFilm</h3>
@@ -43,7 +43,15 @@ $term = array(
     'popularity' => 50
 );
 /* debug(searchFilm($term)) . '<br>'; */
->>>>>>> Add a function to search film by criteria
+
+// debug(getInterval(getUniqueValues('year', false)));
+?>
+<h3 class="underline">Test getInterval pour les années : </h3>
+<?php
+    $tab_years = getUniqueValues('year', false);
+    $offset = 10;
+    print_r(getInterval($tab_years));
+    // afficheChexbox($tab_years, 'year');
 ?>
 
 <?php include 'include/footer.php';
