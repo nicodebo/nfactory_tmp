@@ -13,3 +13,7 @@
 .card img{
     height: 100%;
 }
+#favoris fieldset div{
+    display: inline-block;
+    width: 150px;
+}

@@ -16,6 +16,6 @@ include 'include/header.php';
 <?php 
 // $tab_genre = getTabColumnValues('genres');
 // debug($tab_genre);
-debug(getUniqueValues('genres'));
+debug(getInterval(getUniqueValues('year', false)));
 ?>
 <?php include 'include/footer.php';
