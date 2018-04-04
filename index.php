@@ -6,6 +6,11 @@ include 'include/model.php';
 $movies  = getRandomFilm(10);
 include 'include/header.php';
 ?>
+
+    <form action="refreshfilm.php">
+        <input class="reloadPage" type="submit" value="more film"></button> 
+    </form>
+
     <?php foreach($movies as $movie){?>
     <div class="poster">
         <div class="card">
