@@ -37,3 +37,10 @@ function afficheChexbox($tab, $column){
         echo '<div><input type="checkbox" name="' . $column . '[]' . '" value="' . $value .'"><label for="'. $value . '">' . $value . '</label></div>';
     }
 }
+
+function checkSrcImg($name, $fold){
+    if (!file_exists($fold . $name)){
+        $name = '0000.jpg';
+    }
+    return $fold . $name;
+}

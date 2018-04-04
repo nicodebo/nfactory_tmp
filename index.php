@@ -24,7 +24,7 @@ if(!empty($_POST['submitted'])){
     <div class="poster">
         <div class="card">
             <a href="detail.php?id=<?php echo $movie['id']; ?>">
-            <img src="<?php echo 'posters/'.$movie['id'].'.jpg'?>" alt="<?php echo $movie['title'] ?>">
+                <img src="<?php echo checkSrcImg($movie['id'].'.jpg', 'posters/');?>" alt="<?php echo $movie['title'] ?>">
             </a>
         </div>
     </div>
