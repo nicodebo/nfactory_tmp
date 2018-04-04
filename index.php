@@ -4,23 +4,72 @@ include 'include/pdo.php';
 include 'include/model.php';
 include 'include/function.php';
 
-$movies  = getRandomFilm(10);
-
-
 
 include 'include/header.php';
-if(!empty($_POST['submitted'])){
-    print_r($_POST['genres']);
-    // echo $_POST['genres'];
-    }
+
+$success = false;
+
 ?>
 <!-- refresh ma selection aléatoire -->
-    <div id="refresh">
-        <button><a class="reloadPage" href="refreshfilm.php">refresh Random selection</a></button>
-    </div>
+<div id="refresh">
+    <button><a class="reloadPage" href="refreshfilm.php">refresh Random selection</a></button>
+</div>
 
+<?php
+if(!empty($_POST['submitted'])) {
+    $genres = array();
+    $years = array();
+
+    //faille xss
+    if(!empty($_POST['genres'])){
+        foreach($_POST['genres'] as $elem) {
+            $genres[] = trim(strip_tags($elem));
+        }
+    }
+
+    if(!empty($_POST['year'])){
+        foreach($_POST['year'] as $elem) {
+            $years[] = trim(strip_tags($elem));
+        }
+    }
+
+    $popularity = trim(strip_tags($_POST['popularity']));
+
+    #TODO: vérifier la validité des valueurs
+
+    if(empty($error)){
+        $searchTerms = array(
+            'genres' => null,
+            'years' => null,
+            'popularity' => $popularity
+        );
+
+        if(!empty($genres))
+        {
+            $searchTerms['genres'] = $genres;
+        }
+
+        if(!empty($years))
+        {
+            $searchTerms['years'] = $years;
+        }
+
+        $movies = searchFilm($searchTerms);
+
+        if($movies) {
+            $success = true;
+        }
+    }
+}
+
+
+if(!$success){
+    echo 'no films found. Displaying 10 randoms film.' . '<br>';
+    $movies = getRandomFilm(10);
+}
+
+    foreach($movies as $movie) { ?>
     <!-- affiche les posters -->
-    <?php foreach($movies as $movie){?>
     <div class="poster">
         <div class="card">
             <a href="detail.php?id=<?php echo $movie['id']; ?>">
@@ -53,17 +102,8 @@ if(!empty($_POST['submitted'])){
 
         <fieldset>
             <legend>Popularité en nombre de vues :</legend>
-            <div>
-                <input type="checkbox" name="popularity" value="25">
-                <label for="25">25</label>
-            </div>
-            <div>
-                <input type="checkbox" name="popularity" value="50">
-                <label for="50">50</label>
-            </div>
-            <div>
-                <input type="checkbox" name="popularity" value="75">
-                <label for="75">75</label>
+            <div class="slidecontainer">
+              <input type="range" min="1" max="100" value="50" class="slider" name="popularity" id="myRange">
             </div>
         </fieldset>
 
