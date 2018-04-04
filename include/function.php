@@ -18,3 +18,9 @@ function getUniqueValues($column){
     $tab = array_filter(array_unique(explode(', ', $strvalues)));
     return $tab;
 }
+
+function afficheChexbox($column){
+    foreach(getUniqueValues($column) as $value){
+        echo '<div><input type="checkbox" name="' . $column . '" value="' . $value .'"><label for="'. $value . '">' . $value . '</label></div>';
+    }
+}
