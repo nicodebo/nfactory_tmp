@@ -58,3 +58,68 @@ function getTabColumnValues($column, $table="movies_full")
 
     return $column;
 }
+
+// Search film by years, genres and popularity
+function searchFilm(array $terms, $table="movies_full")
+{
+    global $pdo;
+    $sql = "SELECT * FROM $table WHERE 1 = 1";
+    $index = 0;
+    $bindTable = array();
+    $requestPiece = array();
+    $finalPiece = array();
+    $param = '';
+
+    foreach($terms as $key => $values)
+    {
+        if($key == 'genres' && !is_null($values)){
+            foreach($values as $value){
+                $param = ':val' . $index;
+                $bindTable['PDO::PARAM_STR'][$param] = '%' . $value . '%';
+                $requestPiece['genres'][] = 'genres LIKE ' . $param;
+                $index++;
+            }
+        } elseif($key == 'years' && !is_null($values)){
+            foreach($values as $value){
+                $param = ':val' . $index;
+                $bindTable['PDO::PARAM_INT'][$param] = $value;
+                $requestPiece['years'][] = 'year = ' . $param;
+                $index++;
+            }
+        } elseif($key == 'popularity' && !is_null($values)){
+                $param = ':val' . $index;
+                $bindTable['PDO::PARAM_INT'][$param] = $values;
+                $requestPiece['popularity'][] = 'popularity > ' . $param;
+                $index++;
+        }
+    }
+
+    // merge final request pieces
+    $finalPiece[] = $sql;
+    foreach($requestPiece as $elem)
+    {
+        $finalPiece[] = '( ' .implode(' OR ', $elem). ' )';
+    }
+
+    $sql = implode(' AND ', $finalPiece);
+    /* echo $sql; */
+    /* debug($bindTable); */
+
+    // bind values of request
+    $query = $pdo->prepare($sql);
+    foreach($bindTable as $key => $values)
+    {
+        foreach($values as $param => $value)
+        {
+            if($key == 'PDO::PARAM_INT') {
+                $query->bindValue($param, $value, PDO::PARAM_INT);
+            } elseif($key == 'PDO::PARAM_STR') {
+                $query->bindValue($param, $value, PDO::PARAM_STR);
+            }
+        }
+    }
+    $query->execute();
+    $films = $query->fetchAll();
+
+    return $films;
+}
