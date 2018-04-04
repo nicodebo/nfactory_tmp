@@ -28,7 +28,6 @@ function readFilmById($id)
     return $film;
 }
 
-
 //Cette fonction permet de savoir si un id existe
 // $id = l'id dont l'on veut vérifier que la ligne existe.
 function checkFilmExists($id, $table="movies_full")
@@ -45,4 +44,17 @@ function checkFilmExists($id, $table="movies_full")
     }
 
     return $exists;
+}
+
+// recupérer une column, grâce un nom mis en paramètre
+function getTabColumnValues($column, $table="movies_full")
+{
+    global $pdo;
+    $sql = "SELECT DISTINCT $column FROM $table";
+    $query = $pdo->prepare($sql);
+    $query->bindValue(':column', $column, PDO::PARAM_STR);
+    $query->execute();
+    $column = $query->fetchAll();
+
+    return $column;
 }
