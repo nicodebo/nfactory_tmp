@@ -1,14 +1,15 @@
-#poster{
-    height: 300px;
-}
-.card{
+.poster{
     display: inline-block;
+}
+
+.card{
     width: auto;
     height: 100%;
     margin: 10px;
     border: 1px solid black;
     padding: 10px;
 }
+
 .card img{
     height: 100%;
 }
