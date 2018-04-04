@@ -2,6 +2,7 @@
 include 'include/identifier.php';
 include 'include/pdo.php';
 include 'include/model.php';
+include 'include/function.php';
 
 // recupérer le $_GET
 if (!empty($_GET['id']) && is_numeric($_GET['id'])){
@@ -21,10 +22,19 @@ include 'include/header.php';
 
 <!-- affiche le film -->
 <div id="detail">
-    <?php  
-    foreach($movie as $data){ ?>
-        <p><?php echo $data?></p>
-    <?php }?>
+    <div>
+        <p><?php echo $movie['title']; ?></p>
+        <p><?php echo $movie['year']; ?></p>
+        <p><?php echo $movie['genres']; ?></p>
+        <p><?php echo $movie['plot']; ?></p>
+        <p><?php echo $movie['directors']; ?></p>
+        <p><?php echo $movie['cast']; ?></p>
+        <p><?php echo $movie['writers']; ?></p>
+        <p><?php echo $movie['runtime']; ?></p>
+        <p><?php echo $movie['mpaa']; ?></p>
+        <p><?php echo $movie['rating']; ?></p>
+        <p><?php echo $movie['popularity']; ?></p>
+    </div> 
 </div>
 
 <?php include 'include/footer.php';
