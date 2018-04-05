@@ -73,6 +73,8 @@ function slugify($text)
 
   return $text;
 }
+
+// pour le Token
 function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
@@ -81,4 +83,49 @@ function generateRandomString($length = 10) {
         $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
     return $randomString;
+}
+
+// retourne la dernière valeur rempli par l'utilisateur
+function lastValue($value){
+    if(!empty($_POST[$value])){
+        return $_POST[$value];
+    }
+}
+
+// affiche les erreurs pour remplir le formulaire
+function afficheError($error, $value){
+    if (!empty($error[$value])) {
+        echo $error[$value];
+    }
+}
+
+// control les $_POST
+function control($error, $value, $key,$max, $min){
+    if(!empty($value)){
+
+        if(strlen($value) <= $min){
+            $error[$key] = 'Veuillez renseigner au moins '.$min.' caractères pour ce champs';
+        }elseif (strlen($value) >= $max){
+            $error[$key] = 'Veuillez renseigner au maximum '.$max.'caractères pour ce champs';
+        }
+        $value = ucfirst($value);
+    }else{
+        $error[$key] ='Veuillez renseigner ce champs';
+    }
+return $error;
+}
+
+//Fonction de controle de l'adresse mail
+function controlEmail($email, $error, $key){
+    if(!empty($email)){
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+        } else {
+            $error[$key] = "Email non valide";
+        }
+        
+    }else{
+        $error[$key] ='Veuillez renseigner le champs email';
+    }
+    return $error;
 }
