@@ -159,3 +159,18 @@ function searchFilm(array $terms, $table="movies_full")
 
     return $films;
 }
+
+
+// search film by search term
+function searchFilmForm(string $search)
+{
+    global $pdo;
+    /* $sql = "SELECT * FROM movies_full WHERE title LIKE :search OR actors LIKE :search OR director LIKE :search"; */
+    $sql = "SELECT * FROM movies_full WHERE title LIKE :search";
+    $query = $pdo->prepare($sql);
+    $query->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
+    $query->execute();
+    $films = $query->fetchAll();
+
+    return $films;
+}
