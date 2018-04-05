@@ -98,33 +98,24 @@ if(!$success && !empty($_POST['submitted'])){
     <form id="favoris" action="" method="post">
         <!-- Ajout des chexbox par genres, années et popularité -->
         <fieldset>
-            <legend>Vous pouvez sélectionner votre genre favoris :</legend>
+            <legend>Sélection personnalisé :</legend>        
             <!-- // foreach -->
+            <legend class="legend-preferences">Genres :</legend>            
             <?php
             $tab_genres = getUniqueValues('genres');
             afficheChexbox($tab_genres, 'genres');
             ?>
-        </fieldset>
-
-        <fieldset>
-            <legend>Vous pouvez sélectionner l'année de sortie du film :</legend>
+            <legend class="legend-preferences">Année :</legend>
             <?php
 
             $tab_years = getUniqueValues('year', false);
             $tab_years = getInterval($tab_years);
             afficheChexbox($tab_years, 'year');
             ?>
-        </fieldset>
-
-        <fieldset>
-            <legend>Popularité en nombre de vues :</legend>
+            <legend class="legend-preferences">Popularité en nombre de vues :</legend>
             <div class="slidecontainer">
               <input type="range" min="0" max="100" value="50" class="slider" name="popularity" id="myRange">
             </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>Demander ma sélection personnalisé :</legend>
             <input class="reloadPage" type="submit" name="submitted" value="Voir ma selection personnalisée">
         </fieldset>
         
