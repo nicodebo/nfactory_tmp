@@ -28,14 +28,13 @@ function readFilmById($id)
     return $film;
 }
 
-//Récupère un element par son slug
-// $slug = le slug que l'on recherche
-function readFilmBySlug($str)
+//Récupère un element par son nom de colonne et sa valeur
+function readFilmByColVal($col, $val)
 {
     global $pdo;
-    $sql = "SELECT * FROM movies_full WHERE slug = :str";
+    $sql = "SELECT * FROM movies_full WHERE $col = :val";
     $query = $pdo->prepare($sql);
-    $query->bindValue(':str', $str, PDO::PARAM_STR);
+    $query->bindValue(':val', $val, PDO::PARAM_STR);
     $query->execute();
     $film = $query->fetch();
 

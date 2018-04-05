@@ -8,7 +8,7 @@ include 'include/function.php';
 if (!empty($_GET['slug']) && is_string($_GET['slug'])){
     $slug = $_GET['slug'];
     if(checkFilmExistsBySlug($slug)){
-        $movie = readFilmBySlug($slug);
+        $movie = readFilmByColVal('slug', $slug);
         if(empty($movie)){
             die('404');
         }
