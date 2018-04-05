@@ -33,13 +33,13 @@ $term = array(
 
 $term = array(
     'genres' => array('sf', 'thriller'),
-    'years' => array(1992, 1999)
+    'years' => array("1992-1993", "1993-1994")
 );
 /* debug(searchFilm($term)) . '<br>'; */
 
 $term = array(
     'genres' => array('sf', 'thriller', 'comedy'),
-    'years' => array(1992, 1999),
+    'years' => array("1992-1999"),
     'popularity' => 50
 );
 /* debug(searchFilm($term)) . '<br>'; */

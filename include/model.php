@@ -75,20 +75,24 @@ function searchFilm(array $terms, $table="movies_full")
         if($key == 'genres' && !is_null($values)){
             foreach($values as $value){
                 $param = ':val' . $index;
-                $bindTable['PDO::PARAM_STR'][$param] = '%' . $value . '%';
+                $bindTable['str'][$param] = '%' . $value . '%';
                 $requestPiece['genres'][] = 'genres LIKE ' . $param;
                 $index++;
             }
         } elseif($key == 'years' && !is_null($values)){
             foreach($values as $value){
+                $expYears = explode('-', $value);
                 $param = ':val' . $index;
-                $bindTable['PDO::PARAM_INT'][$param] = $value;
-                $requestPiece['years'][] = 'year = ' . $param;
-                $index++;
+                $bindTable['int'][$param] = $expYears[0];
+                $requestPiece['years'][] = 'year BETWEEN ' . $param . ' AND ';
+                $param = ':val' . ($index + 1);
+                $bindTable['int'][$param] = $expYears[1];
+                $requestPiece['years'][count($requestPiece['years']) - 1] .= $param;
+                $index +=2;
             }
         } elseif($key == 'popularity' && !is_null($values)){
                 $param = ':val' . $index;
-                $bindTable['PDO::PARAM_INT'][$param] = $values;
+                $bindTable['int'][$param] = $values;
                 $requestPiece['popularity'][] = 'popularity > ' . $param;
                 $index++;
         }
@@ -102,7 +106,7 @@ function searchFilm(array $terms, $table="movies_full")
     }
 
     $sql = implode(' AND ', $finalPiece);
-    /* echo $sql; */
+    echo $sql;
     /* debug($bindTable); */
 
     // bind values of request
@@ -111,9 +115,9 @@ function searchFilm(array $terms, $table="movies_full")
     {
         foreach($values as $param => $value)
         {
-            if($key == 'PDO::PARAM_INT') {
+            if($key == 'int') {
                 $query->bindValue($param, $value, PDO::PARAM_INT);
-            } elseif($key == 'PDO::PARAM_STR') {
+            } elseif($key == 'str') {
                 $query->bindValue($param, $value, PDO::PARAM_STR);
             }
         }
