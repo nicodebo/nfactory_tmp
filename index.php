@@ -76,7 +76,7 @@ if(!$success && !empty($_POST['submitted'])){
     <!-- affiche les posters -->
     <div class="poster">
         <div class="card">
-            <a href="detail.php?id=<?php echo $movie['id']; ?>">
+            <a href="detail.php?slug=<?php echo $movie['slug']; ?>">
                 <img src="<?php echo checkSrcImg($movie['id'].'.jpg', 'posters/');?>" alt="<?php echo $movie['title'] ?>">
             </a>
         </div>

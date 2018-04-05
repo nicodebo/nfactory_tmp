@@ -28,6 +28,20 @@ function readFilmById($id)
     return $film;
 }
 
+//Récupère un element par son slug
+// $slug = le slug que l'on recherche
+function readFilmBySlug($str)
+{
+    global $pdo;
+    $sql = "SELECT * FROM movies_full WHERE slug = :str";
+    $query = $pdo->prepare($sql);
+    $query->bindValue(':str', $str, PDO::PARAM_STR);
+    $query->execute();
+    $film = $query->fetch();
+
+    return $film;
+}
+
 //Cette fonction permet de savoir si un id existe
 // $id = l'id dont l'on veut vérifier que la ligne existe.
 function checkFilmExists($id, $table="movies_full")
@@ -37,6 +51,24 @@ function checkFilmExists($id, $table="movies_full")
     $sql = "SELECT id FROM $table WHERE id = :id";
     $query = $pdo->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_INT);
+    $query->execute();
+    if($query->fetch())
+    {
+        $exists = true;
+    }
+
+    return $exists;
+}
+
+//Cette fonction permet de savoir si un slug existe
+// $slug = le slug dont l'on veut vérifier que la ligne existe.
+function checkFilmExistsBySlug($slug, $table="movies_full")
+{
+    $exists = false;
+    global $pdo;
+    $sql = "SELECT slug FROM $table WHERE slug = :slug";
+    $query = $pdo->prepare($sql);
+    $query->bindValue(':slug', $slug, PDO::PARAM_STR);
     $query->execute();
     if($query->fetch())
     {

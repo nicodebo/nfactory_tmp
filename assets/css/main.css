@@ -1,4 +1,4 @@
-.poster{
+.poster, #description{
     display: inline-block;
 }
 
@@ -16,4 +16,14 @@
 #favoris fieldset div{
     display: inline-block;
     width: 150px;
+}
+
+
+/********** detail.php **********/
+.description span{
+    text-decoration: underline;
+    margin-right: 40px;
+    width: 80px;
+    display: inline-block;
+
 }

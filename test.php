@@ -54,4 +54,11 @@ $term = array(
     // afficheChexbox($tab_years, 'year');
 ?>
 
+<h3 class="underline">Test pretty url slugify : </h3>
+<?php
+    echo $movies[0]['slug'];
+    echo slugify($movies[0]['slug']);
+?>
+
+
 <?php include 'include/footer.php';

@@ -5,10 +5,10 @@ include 'include/model.php';
 include 'include/function.php';
 
 // recupérer le $_GET
-if (!empty($_GET['id']) && is_numeric($_GET['id'])){
-    $id = $_GET['id'];
-    if(checkFilmExists($id)){
-        $movie = readFilmById($id);
+if (!empty($_GET['slug']) && is_string($_GET['slug'])){
+    $slug = $_GET['slug'];
+    if(checkFilmExistsBySlug($slug)){
+        $movie = readFilmBySlug($slug);
         if(empty($movie)){
             die('404');
         }
@@ -22,19 +22,26 @@ include 'include/header.php';
 
 <!-- affiche le film -->
 <div id="detail">
-    <div>
-        <p><?php echo $movie['title']; ?></p>
-        <p><?php echo $movie['year']; ?></p>
-        <p><?php echo $movie['genres']; ?></p>
-        <p><?php echo $movie['plot']; ?></p>
-        <p><?php echo $movie['directors']; ?></p>
-        <p><?php echo $movie['cast']; ?></p>
-        <p><?php echo $movie['writers']; ?></p>
-        <p><?php echo $movie['runtime']; ?></p>
-        <p><?php echo $movie['mpaa']; ?></p>
-        <p><?php echo $movie['rating']; ?></p>
-        <p><?php echo $movie['popularity']; ?></p>
-    </div> 
+    <div class="poster">
+        <div class="card">
+            <img src="<?php echo checkSrcImg($movie['id'].'.jpg', 'posters/');?>" alt="<?php echo $movie['title'] ?>">
+        </div>
+    </div>
+    <div id="description" class="">
+        <div class="card">
+            <p class="description"><span>Titre</span> : <?php echo $movie['title']; ?></p>
+            <p class="description"><span>Année</span> : <?php echo $movie['year']; ?></p>
+            <p class="description"><span>Genres</span> : <?php echo $movie['genres']; ?></p>
+            <p class="description"><span>Synopsis</span> : <?php echo $movie['plot']; ?></p>
+            <p class="description"><span>Directeurs</span> : <?php echo $movie['directors']; ?></p>
+            <p class="description"><span>Acteurs</span> : <?php echo $movie['cast']; ?></p>
+            <p class="description"><span>Auteurs</span> : <?php echo $movie['writers']; ?></p>
+            <p class="description"><span>Durée</span> : <?php echo $movie['runtime']; ?></p>
+            <p class="description"><span>Mpaa</span> : <?php echo $movie['mpaa']; ?></p>
+            <p class="description"><span>Rating</span> : <?php echo $movie['rating']; ?></p>
+            <p class="description"><span>Popularité</span> : <?php echo $movie['popularity']; ?></p>
+        </div>
+    </div>
 </div>
 
 <?php include 'include/footer.php';
