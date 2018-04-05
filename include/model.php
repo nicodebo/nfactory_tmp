@@ -93,7 +93,7 @@ function searchFilm(array $terms, $table="movies_full")
         } elseif($key == 'popularity' && !is_null($values)){
                 $param = ':val' . $index;
                 $bindTable['int'][$param] = $values;
-                $requestPiece['popularity'][] = 'popularity > ' . $param;
+                $requestPiece['popularity'][] = 'popularity >= ' . $param;
                 $index++;
         }
     }
@@ -106,7 +106,7 @@ function searchFilm(array $terms, $table="movies_full")
     }
 
     $sql = implode(' AND ', $finalPiece);
-    echo $sql;
+    /* echo $sql; */
     /* debug($bindTable); */
 
     // bind values of request

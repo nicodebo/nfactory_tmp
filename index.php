@@ -108,7 +108,7 @@ if(!$success && !empty($_POST['submitted'])){
         <fieldset>
             <legend>Popularité en nombre de vues :</legend>
             <div class="slidecontainer">
-              <input type="range" min="1" max="100" value="50" class="slider" name="popularity" id="myRange">
+              <input type="range" min="0" max="100" value="50" class="slider" name="popularity" id="myRange">
             </div>
         </fieldset>
 
