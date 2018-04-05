@@ -29,16 +29,16 @@ function readFilmById($id)
 }
 
 //Récupère un element par son nom de colonne et sa valeur
-function readFilmByColVal($col, $val)
+function readTableByColVal($col, $val, $table="movies_full")
 {
     global $pdo;
-    $sql = "SELECT * FROM movies_full WHERE $col = :val";
+    $sql = "SELECT * FROM $table WHERE $col = :val";
     $query = $pdo->prepare($sql);
     $query->bindValue(':val', $val, PDO::PARAM_STR);
     $query->execute();
-    $film = $query->fetch();
+    $elem = $query->fetch();
 
-    return $film;
+    return $elem;
 }
 
 //Cette fonction permet de savoir si un id existe
