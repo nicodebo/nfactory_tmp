@@ -16,6 +16,10 @@
                 <li><a href="inscription.php">Inscription</a></li>
                 <li><a href="connexion.php">Connexion</a></li>
             </ul>
+            <form action="search.php" method="get">
+                    <input type="text" name="search">
+                    <input type="submit" value="Rechercher">
+            </form>
         </nav>
     </header>
     <div id="content">
