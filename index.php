@@ -14,7 +14,7 @@ $success = false;
 ?>
 <!-- refresh ma selection aléatoire -->
 <div id="refresh">
-    <button><a class="reloadPage" href="refreshfilm.php">refresh Random selection</a></button>
+    <a class="reloadPage" href="index.php">refresh Random selection</a>
 </div>
 
 <?php
