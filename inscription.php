@@ -92,7 +92,7 @@ if(!empty($_POST['submitted'])){
 include('include/header.php');
 //Formulaire
 ?>
-<h1> Formulaire </h1>
+<h1> Inscription </h1>
 <form action="inscription.php" method="POST" >
     <div>    
     <label for="pseudo">Pseudo: *</label>
