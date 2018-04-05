@@ -27,3 +27,8 @@
     display: inline-block;
 
 }
+
+/******** les formulaires de préférences */
+#preferences{
+    display: none;
+}

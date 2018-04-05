@@ -83,7 +83,18 @@ if(!$success && !empty($_POST['submitted'])){
     </div>
     <?php } ?>
 
+<div>
+    <button type="button" id="open-selection">Faire une sélection personnalisé :</button>
+</div>
+<div id="preferences">
     <!-- formulaire -->
+    <form action="search.php" method="get">
+        <fieldset>
+            <legend>Recherchez votre film favoris, avec un titre, un acteur ou un réalisateur :</legend>        
+                <input type="text" name="search">
+                <input type="submit" value="Rechercher">
+        </fieldset>        
+    </form>
     <form id="favoris" action="" method="post">
         <!-- Ajout des chexbox par genres, années et popularité -->
         <fieldset>
@@ -112,7 +123,12 @@ if(!$success && !empty($_POST['submitted'])){
             </div>
         </fieldset>
 
-        <input class="reloadPage" type="submit" name="submitted" value="Voir ma selection personnalisée">
+        <fieldset>
+            <legend>Demander ma sélection personnalisé :</legend>
+            <input class="reloadPage" type="submit" name="submitted" value="Voir ma selection personnalisée">
+        </fieldset>
+        
     </form>
+</div>
 
 <?php include 'include/footer.php';
