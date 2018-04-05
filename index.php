@@ -7,6 +7,8 @@ include 'include/function.php';
 
 include 'include/header.php';
 
+$movies = getRandomFilm(10);
+
 $success = false;
 
 ?>
@@ -63,7 +65,9 @@ if(!empty($_POST['submitted'])) {
 }
 
 
-if(!$success){
+// si les critères du formulaire n'ont rien retournés on affiche 10 films au
+// hasard
+if(!$success && !empty($_POST['submitted'])){
     echo 'no films found. Displaying 10 randoms film.' . '<br>';
     $movies = getRandomFilm(10);
 }
