@@ -172,3 +172,17 @@ function searchFilmForm(string $search)
 
     return $films;
 }
+
+//CRUD user table
+function createUser($pseudo, $email, $password_hash, $token)
+{
+    global $pdo;
+    $sql = "INSERT INTO users (pseudo, email, password, token, created_at, role ) VALUES (:pseudo, :email, :password_hash, :token, now(), 'abonne')";
+    $query = $pdo->prepare($sql);
+    $query->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
+    $query->bindValue(':email', $email, PDO::PARAM_STR);
+    $query->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
+    $query->bindValue(':token', $token, PDO::PARAM_STR);
+
+    return $query->execute();
+}

@@ -5,10 +5,6 @@ include('include/pdo.php');
 include('include/model.php');
 include('include/function.php');
 
-?>
-
-
-<?php
 $error = [];
 if(!empty($_POST['submitlogin'])) {
     // protection XSS
@@ -37,7 +33,7 @@ if(!empty($_POST['submitlogin'])) {
                             'ip'     => $_SERVER['REMOTE_ADDR']
                         );
                         
-                        //header('Location: index.php');
+                        header('Location: index.php');
 
               } else {
                     $error['password'] = 'Mauvais mot de passe';
@@ -46,9 +42,8 @@ if(!empty($_POST['submitlogin'])) {
           $error['login'] = 'Identifiant inconnu';
         }
     }
-  }
+}
 
- 
 ?>
 <?php include('include/header.php'); ?>
 
