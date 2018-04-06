@@ -26,7 +26,7 @@ if($success) { ?>
         foreach($films as $film){
             if(!empty($film['title'])){ ?>
                 <li class="cherche">
-                    <a href="detail.php?id=<?php echo $film['id']; ?>"><?php echo $film['title'] ?></a>
+                    <a href="detail.php?slug=<?php echo $film['slug']; ?>"><?php echo $film['title'] ?></a>
                 </li>
             <?php } ?>
         <?php } ?>

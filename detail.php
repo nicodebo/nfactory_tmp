@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'include/identifier.php';
 include 'include/pdo.php';
 include 'include/model.php';
@@ -40,6 +41,17 @@ include 'include/header.php';
             <p class="description"><span>Mpaa</span> : <?php echo $movie['mpaa']; ?></p>
             <p class="description"><span>Rating</span> : <?php echo $movie['rating']; ?></p>
             <p class="description"><span>Popularité</span> : <?php echo $movie['popularity']; ?></p>
+            <!-- ajout d'un bravo si ajout dans la liste -->
+            <?php if(!empty($_SESSION['user']) && checkFilmAVoir($_SESSION['user']['id'], $movie['id']) 
+            //  && if id_movie existe dans id_user existe dans user_note
+            ){ ?>
+            <p>Ce film est dans votre liste de film à voir</p>
+            <!-- ajout du bouton de wishlist -->
+            <?php }elseif(!empty($_SESSION['user'])){ ?>
+            <div>
+                <button><a class="" href="addtolist.php?user=<?php echo $_SESSION['user']['id'];?>&slug=<?php echo $movie['slug']?>">Ajouter ce film à ma liste</a></button>
+            </div>
+            <?php } ?>
         </div>
     </div>
 </div>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'include/identifier.php';
 include 'include/pdo.php';
 include 'include/model.php';
@@ -58,6 +59,28 @@ $term = array(
 <?php
     echo $movies[0]['slug'];
     echo slugify($movies[0]['slug']);
+?>
+
+<h3 class="underline">Test  : </h3>
+<?php
+    $user_id = $_SESSION['user']['id'];
+    $movie_id = $_GET['movie']['slug'];
+    function checkFilmAVoir($user_id, $movie_id, $table = 'user_note'){
+        $exists = false;
+        global $pdo;
+        $sql = "SELECT id FROM $table WHERE user_id = :user_id AND movie_id = :movie_id";
+        $query = $pdo->prepare($sql);
+        $query->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+        $query->bindValue(':movie_id', $movie_id, PDO::PARAM_STR);        
+        $query->execute();
+        if($query->fetch())
+        {
+            $exists = true;
+        }
+
+        return $exists;
+    }
+?>
 ?>
 
 

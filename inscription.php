@@ -51,6 +51,7 @@ if(!empty($_POST['submitted'])){
         $token = generateRandomString(50);
         $success = createUser($pseudo, $email, $password_hash, $token);
         //REDIRECTION VERS LA CONNECTION
+<<<<<<< Updated upstream
         if($success) {
             $_SESSION['user'] = array(
                 'id'     => $pdo->lastInsertId(),
@@ -60,6 +61,9 @@ if(!empty($_POST['submitted'])){
             );
             header('Location: index.php');
         }
+=======
+        header('Location: connexion.php');
+>>>>>>> Stashed changes
     }
 }
 
