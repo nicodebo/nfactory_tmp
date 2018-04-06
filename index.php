@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 include 'include/identifier.php';
 include 'include/pdo.php';
 include 'include/model.php';
