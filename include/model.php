@@ -173,7 +173,6 @@ function searchFilmForm(string $search)
     return $films;
 }
 
-<<<<<<< Updated upstream
 //CRUD user table
 function createUser($pseudo, $email, $password_hash, $token)
 {
@@ -186,7 +185,9 @@ function createUser($pseudo, $email, $password_hash, $token)
     $query->bindValue(':token', $token, PDO::PARAM_STR);
 
     return $query->execute();
-=======
+}
+
+
 // ameliorer pour voir plus de parametres
 // function pour checké si film exist dans user_note
 function checkFilmAVoir($user_id, $movie_id, $table = 'user_note'){
@@ -195,7 +196,7 @@ function checkFilmAVoir($user_id, $movie_id, $table = 'user_note'){
     $sql = "SELECT id FROM $table WHERE user_id = :user_id AND movie_id = :movie_id";
     $query = $pdo->prepare($sql);
     $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-    $query->bindValue(':movie_id', $movie_id, PDO::PARAM_INT);        
+    $query->bindValue(':movie_id', $movie_id, PDO::PARAM_INT);
     $query->execute();
     if($query->fetch())
     {
@@ -203,5 +204,21 @@ function checkFilmAVoir($user_id, $movie_id, $table = 'user_note'){
     }
 
     return $exists;
->>>>>>> Stashed changes
+}
+
+
+function getUserFilmToSee($user_id)
+{
+    global $pdo;
+    $sql = "SELECT m.*, n.note
+            FROM user_note AS n
+            LEFT JOIN movies_full AS m
+            ON n.movie_id = m.id
+            WHERE n.user_id = $user_id
+            AND n.note IS NULL";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    $userNotes = $query->fetchAll();
+
+    return $userNotes;
 }
